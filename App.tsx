@@ -7,17 +7,17 @@
 
 import 'react-native-gesture-handler'; // Must be at the top
 import React from 'react';
-import { StatusBar, useColorScheme } from 'react-native';
+import {  useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import AppNavigator from './src/navigation/AppNavigator';
+import RootNavigator from './src/navigation/RootNavigator';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppNavigator />
+
+      <RootNavigator />
     </SafeAreaProvider>
   );
 }

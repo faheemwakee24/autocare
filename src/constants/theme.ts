@@ -1,11 +1,13 @@
+import { FontFamily } from '../assets/fonts';
+import { metrics } from '../utils';
 export const colors = {
   // Primary colors
-  primary: '#007AFF',
+  primary: '#36969A',
   primaryLight: '#4DA3FF',
   primaryDark: '#0056CC',
 
   // Secondary colors
-  secondary: '#5856D6',
+  secondary: '#5C7374',
   secondaryLight: '#7D7AFF',
   secondaryDark: '#3F3CC2',
 
@@ -14,7 +16,7 @@ export const colors = {
   warning: '#FF9500',
   error: '#FF3B30',
   info: '#5AC8FA',
-
+  appBackground: '#FFFFFF',
   // Neutral colors
   white: '#FFFFFF',
   black: '#000000',
@@ -30,40 +32,63 @@ export const colors = {
     800: '#424242',
     900: '#212121',
   },
-
+  primaryColors: {
+    primary5: '#36969A0D',
+    primary7: '#36969A12',
+    primary19: '#36969A30',
+    primary32: '#36969A52'
+  }
+  ,
   // Background colors
   background: {
     primary: '#F5F5F5',
     secondary: '#FFFFFF',
     card: '#FFFFFF',
     overlay: 'rgba(0, 0, 0, 0.5)',
+    primary5: '#36969A0D',
+    primary7: '#36969A12',
+    primary19: '#36969A30'
   },
 
   // Text colors
   text: {
-    primary: '#212121',
-    secondary: '#757575',
+    primary: '#5C7374',
+    secondary: '#4D4D4D',
     tertiary: '#9B9B9B',
     inverse: '#FFFFFF',
     disabled: '#B8B8B8',
+    title: '#000000',
+    white: '#FFFFFF'
   },
 
   // Border colors
+
   border: {
     light: '#E5E5E5',
-    medium: '#D1D1D1',
+    medium: '#5C737412',
     dark: '#B8B8B8',
+    dark2: '#5C73743B',
+    primary5: '#36969A0D',
+    primary7: '#36969A12'
+
   },
 };
 
 export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 16,
-  lg: 24,
-  xl: 32,
-  xxl: 48,
-  xxxl: 64,
+  xs: metrics.width(4),
+  sm: metrics.width(8),
+  sml: metrics.width(10),
+  md: metrics.width(13),
+  mdl: metrics.width(14),
+  mdl2: metrics.width(16),
+  mdl3: metrics.width(18),
+  mdl4: metrics.width(20),
+  lg: metrics.width(24),
+  xl: metrics.width(32),
+  xl2: metrics.width(40),
+  xxl: metrics.width(48),
+  xxxl: metrics.width(64),
+  appMarginHorizontal: metrics.width(30),
 };
 
 export const borderRadius = {
@@ -73,19 +98,22 @@ export const borderRadius = {
   lg: 12,
   xl: 16,
   xxl: 24,
+  xxl2: metrics.width(42),
+  xxxl: 67,
   full: 9999,
 };
 
 export const typography = {
   fontSize: {
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 18,
-    xl: 20,
-    xxl: 24,
-    xxxl: 32,
-    huge: 48,
+    xs: metrics.width(13),
+    xsm: metrics.width(14),
+    sm: metrics.width(15),
+    md: metrics.width(17),
+    lg: metrics.width(18),
+    xl: metrics.width(20),
+    xxl: metrics.width(24),
+    xxxl: metrics.width(32),
+    huge: metrics.width(48),
   },
   fontWeight: {
     light: '300' as const,
@@ -99,6 +127,14 @@ export const typography = {
     tight: 1.25,
     normal: 1.5,
     relaxed: 1.75,
+  },
+  fontFamily: {
+    regular: FontFamily.playfair.regular,
+    medium: FontFamily.playfair.medium,
+    semiBold: FontFamily.playfair.semiBold,
+    bold: FontFamily.playfair.bold,
+    heading: FontFamily.playfair.bold,
+    italic: FontFamily.playfair.italic,
   },
 };
 

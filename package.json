@@ -7,16 +7,21 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "link:assets": "npx react-native-asset"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native/new-app-screen": "0.83.1",
     "@react-navigation/bottom-tabs": "^7.9.1",
     "@react-navigation/native": "^7.1.27",
+    "@react-navigation/native-stack": "^7.9.1",
     "@react-navigation/stack": "^7.6.14",
     "react": "19.2.0",
     "react-native": "0.83.1",
+    "react-native-calendars": "^1.1313.0",
     "react-native-gesture-handler": "^2.30.0",
+    "react-native-linear-gradient": "^2.8.3",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "^4.19.0",
     "react-native-svg": "^15.15.1",

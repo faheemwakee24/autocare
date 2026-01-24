@@ -18,11 +18,11 @@ export default function HomeScreen() {
   const navigation = useNavigation();
 
   const handleProfilePress = () => {
-    navigation.navigate('Profile');
+    navigation.navigate('MainTabs', { screen: 'Profile' });
   };
 
   const handleSettingsPress = () => {
-    navigation.navigate('Settings');
+    navigation.navigate('MainTabs', { screen: 'Services' });
   };
 
   return (

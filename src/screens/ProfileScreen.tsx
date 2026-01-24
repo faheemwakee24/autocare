@@ -1,111 +1,75 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// Components
-import { Header, Card } from '../components/ui';
-
-// Hooks
+import { ProfileHeader, SegmentedTabs } from '../components/ui';
 import { useNavigation } from '../hooks';
+import { colors, spacing } from '../constants';
+import { ProfileOverview } from '../components/profile/ProfileOverview';
+import { SettingsPanel } from '../components/profile/SettingsPanel';
 
-// Constants
-import { colors, spacing, typography, shadows } from '../constants';
+type TabKey = 'profile' | 'settings';
 
-export default function ProfileScreen() {
+const ProfileScreen = () => {
   const navigation = useNavigation();
+  const [activeTab, setActiveTab] = useState<TabKey>('profile');
+  const [remindersOn, setRemindersOn] = useState(true);
+
+  const tabs = useMemo(
+    () => [
+      { key: 'profile', label: 'Profile' },
+      { key: 'settings', label: 'Settings' },
+    ],
+    [],
+  );
+
   const handleBackPress = () => {
-    navigation.goBack();
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header
-        title="Profile"
-        showBackButton
-        onLeftPress={handleBackPress}
+      <ProfileHeader onBack={handleBackPress}  onNotification={() => navigation.navigate('Notifications')}/>
+
+      <SegmentedTabs
+        items={tabs}
+        containerStyle={{ marginHorizontal: spacing.lg, marginTop: spacing.lg }}
+        activeKey={activeTab}
+        onChange={(key) => setActiveTab(key as TabKey)}
       />
-
       <View style={styles.content}>
-        <View style={styles.profileCard}>
-          <View style={styles.avatar}>
-            <Text style={styles.avatarText}>JD</Text>
-          </View>
-          <Text style={styles.name}>John Doe</Text>
-          <Text style={styles.email}>john.doe@example.com</Text>
-        </View>
-
-        <View style={styles.statsContainer}>
-          <View style={styles.stat}>
-            <Text style={styles.statNumber}>12</Text>
-            <Text style={styles.statLabel}>Vehicles</Text>
-          </View>
-          <View style={styles.stat}>
-            <Text style={styles.statNumber}>45</Text>
-            <Text style={styles.statLabel}>Services</Text>
-          </View>
-          <View style={styles.stat}>
-            <Text style={styles.statNumber}>98%</Text>
-            <Text style={styles.statLabel}>Satisfaction</Text>
-          </View>
-        </View>
+        {activeTab === 'profile' ? (
+          <ProfileOverview
+            avatarUri="https://i.pravatar.cc/300?img=47"
+            name="Dominic Toretto"
+            email="dominic.toretto@gmail.com"
+            onLogout={() => { }}
+            onEditProfile={() => navigation.navigate('EditAccount')}
+          />
+        ) : (
+          <SettingsPanel
+            remindersOn={remindersOn}
+            onToggleReminders={setRemindersOn}
+            onChangePassword={() => navigation.navigate('ChangePassword')}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
-}
+};
+
+export default ProfileScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background.primary,
+    backgroundColor: colors.background.secondary,
   },
   content: {
     flex: 1,
-    padding: spacing.lg,
-  },
-  profileCard: {
-    alignItems: 'center',
-    marginBottom: spacing.xl,
-  },
-  avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: spacing.lg,
-  },
-  avatarText: {
-    color: colors.white,
-    fontSize: typography.fontSize.xxl,
-    fontWeight: typography.fontWeight.bold,
-  },
-  name: {
-    fontSize: typography.fontSize.xxl,
-    fontWeight: typography.fontWeight.bold,
-    color: colors.text.primary,
-    marginBottom: spacing.sm,
-  },
-  email: {
-    fontSize: typography.fontSize.md,
-    color: colors.text.secondary,
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: spacing.xxxl,
-  },
-  stat: {
-    alignItems: 'center',
-  },
-  statNumber: {
-    fontSize: typography.fontSize.xxl,
-    fontWeight: typography.fontWeight.bold,
-    color: colors.primary,
-  },
-  statLabel: {
-    fontSize: typography.fontSize.sm,
-    color: colors.text.secondary,
-    marginTop: spacing.sm,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.lg,
   },
 });
