@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
 // Assets
-import { Logo } from '../../assets';
+import Logo from '../../assets/svg/logo.svg';
 
 // Constants
 import { colors, spacing, typography } from '../../constants';
@@ -11,14 +11,13 @@ export default function SplashScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Logo width={80} height={80} />
-        <Text style={styles.title}>AutoCare</Text>
+        <Logo width={222.55} height={121.02} />
+   
         <ActivityIndicator
           size="large"
           color={colors.primary}
           style={styles.loader}
         />
-        <Text style={styles.loadingText}>Loading...</Text>
       </View>
     </View>
   );
