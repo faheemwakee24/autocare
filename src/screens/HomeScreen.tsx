@@ -34,11 +34,11 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.content}>
-        <Card style={styles.welcomeCard}>
+        {/* <Card style={styles.welcomeCard}>
           <Text style={styles.welcomeText}>
             Welcome to AutoCare! Manage your vehicles, track maintenance, and stay on top of your automotive needs.
           </Text>
-        </Card>
+        </Card> */}
 
         <View style={styles.buttonContainer}>
           <Button

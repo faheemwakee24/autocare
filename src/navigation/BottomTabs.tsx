@@ -8,94 +8,61 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Svg, { Path, Circle } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+
 import SubscriptionScreen from '../screens/services';
 import {
   colors,
   spacing,
-  borderRadius,
+
   typography,
   shadows,
 } from '../constants';
 import { TabParamList } from '../types';
 import ServicesScreen from '../screens/services/ServicesScreen';
 
+// Import SVG icons
+import HomeOutline from '../assets/svg/home.svg';
+import HomeFilled from '../assets/svg/filled-home.svg';
+import CarOutline from '../assets/svg/car.svg';
+import CarFilled from '../assets/svg/filled-car.svg';
+import AIOutline from '../assets/svg/ai.svg';
+import AIFilled from '../assets/svg/ai-filled.svg';
+import ProfileOutline from '../assets/svg/profile.svg';
+import ProfileFilled from '../assets/svg/filled-profile.svg'; 
+
 const Tab = createBottomTabNavigator<TabParamList>();
 
 type TabIconProps = { active: boolean; color: string; size?: number };
 
-const HomeIcon = ({ active, color, size = 24 }: TabIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5a.5.5 0 0 1-.5-.5v-4a1.5 1.5 0 0 0-3 0v4a.5.5 0 0 1-.5.5H5a1 1 0 0 1-1-1v-9.5Z"
-      stroke={color}
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill={active ? 'none' : 'transparent'}
-    />
-  </Svg>
-);
+const HomeIcon = ({ active, color, size = 24 }: TabIconProps) => {
+  const Icon = active ? HomeFilled : HomeOutline;
+  return <Icon width={size} height={size} color={color} />;
+};
 
-const CarIcon = ({ color, size = 26 }: TabIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M4 14v3.5a1.5 1.5 0 0 0 3 0V16h10v1.5a1.5 1.5 0 0 0 3 0V14l-1-4.5a2 2 0 0 0-1.95-1.5H6.95A2 2 0 0 0 5 9.5L4 14Z"
-      stroke={color}
-      strokeWidth={1.6}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <Path
-      d="M7 12h10m-8-2h6"
-      stroke={color}
-      strokeWidth={1.6}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-);
+const CarIcon = ({ active, color, size = 24 }: TabIconProps) => {
+  const Icon = active ? CarFilled : CarOutline;
+  return <Icon width={size} height={size} color={color} />;
+};
 
-const SparkleIcon = ({ color, size = 24 }: TabIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M12 4.5 13.6 8.4 17.5 10 13.6 11.6 12 15.5 10.4 11.6 6.5 10l3.9-1.6L12 4.5Z"
-      stroke={color}
-      strokeWidth={1.6}
-      strokeLinejoin="round"
-      fill="none"
-    />
-    <Path
-      d="M6.25 14.5 7 16.5l2 .75-2 .75-.75 2-.75-2-2-.75 2-.75.75-2Z"
-      stroke={color}
-      strokeWidth={1.4}
-      strokeLinejoin="round"
-      fill="none"
-    />
-  </Svg>
-);
+const SparkleIcon = ({ active, color, size = 24 }: TabIconProps) => {
+  const Icon = active ? AIFilled : AIOutline;
+  return <Icon width={size} height={size} color={color} />;
+};
 
-const ProfileIcon = ({ color, size = 26 }: TabIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Circle cx="12" cy="8" r="3.5" stroke={color} strokeWidth={1.6} />
-    <Path
-      d="M18.5 18c0-2.486-2.91-4.5-6.5-4.5S5.5 15.514 5.5 18"
-      stroke={color}
-      strokeWidth={1.6}
-      strokeLinecap="round"
-    />
-  </Svg>
-);
+const ProfileIcon = ({ active, color, size = 24 }: TabIconProps) => {
+  const Icon = active ? ProfileFilled : ProfileOutline;
+  return <Icon width={size} height={size} color={color} />;
+};
 
 const BAR_HEIGHT = 88;
 const NOTCH_WIDTH = 122;
 const NOTCH_DEPTH = 28;
-const FLOAT_SIZE = 60;
+const FLOAT_SIZE = 54;
 
 const buildPath = (width: number, tabWidth: number, index: number) => {
   const notchCenter = tabWidth * index + tabWidth / 2;
@@ -164,7 +131,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
         pointerEvents="none"
       >
         <View style={styles.floatingCircle}>
-          <ActiveIcon active color={colors.primary} size={28} />
+          <ActiveIcon active color={colors.primary} size={24} />
         </View>
         <Text style={styles.activeLabel}>
           {descriptors[state.routes[state.index].key].options.tabBarLabel ??
@@ -306,8 +273,6 @@ const styles = StyleSheet.create({
     height: FLOAT_SIZE,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    borderWidth: 1,
-    borderColor: colors.border.light,
     borderRadius: 100
   },
   floatingCircle: {

@@ -16,9 +16,11 @@ import SaperateTickIcon from './SaperateTickIcon.svg'
 import EditIcon from './EditIcon.svg' 
 import ProfileIcon from './ProfileIcon.svg'
 import ArrowRight from './ArrowRight.svg'
+import Home from '../svg/home.svg'
 import GrayEdit from './GrayEdit.svg'
 export const Svgs = {
   Logo,
+  Home,
   Google,
   DropDwonIcon,
   CheckCircle,
