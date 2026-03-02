@@ -3,6 +3,7 @@ import { metrics } from '../utils';
 export const colors = {
   // Primary colors
   primary: '#36969A',
+  primary50: '#36969A70',
   primaryLight: '#4DA3FF',
   primaryDark: '#0056CC',
 
@@ -10,7 +11,9 @@ export const colors = {
   secondary: '#5C7374',
   secondaryLight: '#7D7AFF',
   secondaryDark: '#3F3CC2',
-
+  goldGradient: ['#E6B42F', '#DA9327'],
+  gold: '#A67D06',
+  completedGreen:'#36969A40',
   // Status colors
   success: '#34C759',
   warning: '#FF9500',
@@ -36,7 +39,8 @@ export const colors = {
     primary5: '#36969A0D',
     primary7: '#36969A12',
     primary19: '#36969A30',
-    primary32: '#36969A52'
+    primary32: '#36969A52',
+    primary38: '#36969A5D'
   }
   ,
   // Background colors
@@ -69,7 +73,8 @@ export const colors = {
     dark: '#B8B8B8',
     dark2: '#5C73743B',
     primary5: '#36969A0D',
-    primary7: '#36969A12'
+    primary7: '#36969A12',
+    secondary: '#5C7374',
 
   },
 };
@@ -94,6 +99,7 @@ export const spacing = {
 export const borderRadius = {
   none: 0,
   sm: 4,
+  sml: 5,
   md: 8,
   lg: 12,
   xl: 16,
@@ -105,6 +111,10 @@ export const borderRadius = {
 
 export const typography = {
   fontSize: {
+    xxxxxs: metrics.width(8),
+    xxxxs: metrics.width(9),
+    xxs: metrics.width(10),
+    xxs2: metrics.width(12),
     xs: metrics.width(13),
     xsm: metrics.width(14),
     sm: metrics.width(15),
@@ -112,6 +122,7 @@ export const typography = {
     lg: metrics.width(18),
     xl: metrics.width(20),
     xxl: metrics.width(24),
+    xxxs: metrics.width(28),
     xxxl: metrics.width(32),
     huge: metrics.width(48),
   },
@@ -140,31 +151,31 @@ export const typography = {
 
 export const shadows = {
   sm: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowColor: '#0000',
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    elevation: 2,
+    elevation: 16,
   },
   md: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 4,
+    elevation: 16,
   },
   lg: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 8,
+    shadowColor: '#0000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 16,
   },
   xl: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
+    shadowColor: '#0000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
     elevation: 16,
   },
 };

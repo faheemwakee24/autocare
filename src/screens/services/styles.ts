@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border.light,
     backgroundColor: colors.white,
-    ...shadows.sm,
+    ...shadows.md,
     overflow: 'hidden',
   },
   areaItem: {
@@ -298,8 +298,10 @@ const styles = StyleSheet.create({
     borderColor: colors.border.primary7,
     backgroundColor: '#EFF8F8',
     padding: spacing.lg,
-    ...shadows.sm,
+    ...shadows.md,
     gap: spacing.md,
+    marginBottom:spacing.lg,
+    
   },
   summaryRow: {
     flexDirection: 'row',
@@ -361,6 +363,7 @@ const styles = StyleSheet.create({
   },
   serviceSection: {
     gap: spacing.md,
+
   },
   serviceRow: {
     flexDirection: 'row',
@@ -371,15 +374,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     padding: spacing.md,
     gap: spacing.md,
-    ...shadows.sm,
+
   },
   serviceRowList: {
     borderRadius: borderRadius.xxl,
     paddingRight: spacing.lg,
   },
   serviceRowActive: {
-    backgroundColor: colors.background.primary5,
+    backgroundColor:colors.background.primary5,
     borderColor: colors.background.primary7,
+
   },
   serviceThumb: {
     width: metrics.width(99),
@@ -527,15 +531,19 @@ const styles = StyleSheet.create({
     width: '47%',
     borderRadius: borderRadius.xxl,
     backgroundColor: colors.white,
-    overflow: 'hidden',
+    
     borderWidth: 1,
     borderColor: colors.border.light,
-    ...shadows.xl,
+    overflow:'hidden',
+    
+    ...shadows.md,
   },
   categoryCardActive: {},
   categoryImage: {
     width: '100%',
     height: metrics.width(145),
+    borderTopLeftRadius:borderRadius.xxl,
+    borderTopRightRadius:borderRadius.xxl
   },
   categoryLabelWrap: {
     paddingVertical: spacing.sm,
@@ -576,6 +584,7 @@ const styles = StyleSheet.create({
   },
   topButton: {
     marginVertical: spacing.mdl4,
+    backgroundColor:colors.primary50
   },
   topButtonContainer: {
     marginHorizontal: spacing.lg,

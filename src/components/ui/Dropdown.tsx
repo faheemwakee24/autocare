@@ -49,6 +49,7 @@ export const Dropdown = ({
           open && styles.headerOpen,
           disabled && styles.headerDisabled,
           headerStyle,
+          { ...shadows.md }
         ]}
         onPress={toggle}
         disabled={disabled}
@@ -62,7 +63,7 @@ export const Dropdown = ({
         >
           {value || placeholder}
         </Text>
-        <Text style={[styles.caret, !open && styles.caretOpen]}><Svgs.DropDwonIcon/></Text>
+        <View style={[styles.caret, !open && styles.caretOpen]}><Svgs.DropDwonIcon /></View>
       </Pressable>
 
       {open && <View style={styles.body}>{renderBody({ close })}</View>}
@@ -73,6 +74,7 @@ export const Dropdown = ({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    ...shadows.md,
   },
   label: {
     fontSize: typography.fontSize.sm,
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
   },
   caret: {
     color: colors.text.primary,
-    fontSize: typography.fontSize.md,
+    
   },
   caretOpen: {
     transform: [{ rotate: '180deg' }],

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 // Components
-import { Button, Input, Checkbox } from '../../components/ui';
+import { Button, Input, Checkbox, CustomStatusBar } from '../../components/ui';
 
 // Assets
 import { Svgs, images } from '../../assets';
@@ -30,9 +30,10 @@ import {
 } from '../../constants';
 import { metrics } from '../../utils';
 import GradientLine from '../../components/ui/GradientLine';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export default function SignupScreen() {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -73,7 +74,8 @@ export default function SignupScreen() {
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}
       >
-        <Image source={images.AuthMain} style={styles.heroImage} />
+        <CustomStatusBar />
+        <Image source={images.AuthMain} style={[styles.heroImage, { marginTop: insets.top }]} />
 
         <View style={styles.form}>
           <View style={styles.formGroup}>
@@ -106,7 +108,7 @@ export default function SignupScreen() {
             <Checkbox
               checked={termsAndConditions}
               onPress={() => setTermsAndConditions(!termsAndConditions)}
-              label="I agree to the terms and conditions"
+              label="I agree to the Terms of Service and Privacy Policy"
               containerStyle={styles.checkboxContainer}
             />
           </View>

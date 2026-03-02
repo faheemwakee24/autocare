@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const GradientLine = ({
   height = 2,
-  colors = ['#6A0DAD', '#9D4EDD', '#00FFFF'],
+  colors = ['#5C737400', '#5C737480', '#5C737400'],
   style = {},
 }) => {
   return (

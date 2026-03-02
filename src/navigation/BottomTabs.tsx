@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Svg, { Path, Circle } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -24,73 +24,11 @@ import {
 } from '../constants';
 import { TabParamList } from '../types';
 import ServicesScreen from '../screens/services/ServicesScreen';
+import { Svgs } from '../assets';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
-type TabIconProps = { active: boolean; color: string; size?: number };
-
-const HomeIcon = ({ active, color, size = 24 }: TabIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5a.5.5 0 0 1-.5-.5v-4a1.5 1.5 0 0 0-3 0v4a.5.5 0 0 1-.5.5H5a1 1 0 0 1-1-1v-9.5Z"
-      stroke={color}
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill={active ? 'none' : 'transparent'}
-    />
-  </Svg>
-);
-
-const CarIcon = ({ color, size = 26 }: TabIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M4 14v3.5a1.5 1.5 0 0 0 3 0V16h10v1.5a1.5 1.5 0 0 0 3 0V14l-1-4.5a2 2 0 0 0-1.95-1.5H6.95A2 2 0 0 0 5 9.5L4 14Z"
-      stroke={color}
-      strokeWidth={1.6}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <Path
-      d="M7 12h10m-8-2h6"
-      stroke={color}
-      strokeWidth={1.6}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-);
-
-const SparkleIcon = ({ color, size = 24 }: TabIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M12 4.5 13.6 8.4 17.5 10 13.6 11.6 12 15.5 10.4 11.6 6.5 10l3.9-1.6L12 4.5Z"
-      stroke={color}
-      strokeWidth={1.6}
-      strokeLinejoin="round"
-      fill="none"
-    />
-    <Path
-      d="M6.25 14.5 7 16.5l2 .75-2 .75-.75 2-.75-2-2-.75 2-.75.75-2Z"
-      stroke={color}
-      strokeWidth={1.4}
-      strokeLinejoin="round"
-      fill="none"
-    />
-  </Svg>
-);
-
-const ProfileIcon = ({ color, size = 26 }: TabIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Circle cx="12" cy="8" r="3.5" stroke={color} strokeWidth={1.6} />
-    <Path
-      d="M18.5 18c0-2.486-2.91-4.5-6.5-4.5S5.5 15.514 5.5 18"
-      stroke={color}
-      strokeWidth={1.6}
-      strokeLinecap="round"
-    />
-  </Svg>
-);
+type TabIconProps = { active?: boolean; color: string; size?: number; focused?: boolean };
 
 const BAR_HEIGHT = 88;
 const NOTCH_WIDTH = 122;
@@ -164,7 +102,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
         pointerEvents="none"
       >
         <View style={styles.floatingCircle}>
-          <ActiveIcon active color={colors.primary} size={28} />
+          <ActiveIcon active focused color={colors.primary} size={28} />
         </View>
         <Text style={styles.activeLabel}>
           {descriptors[state.routes[state.index].key].options.tabBarLabel ??
@@ -215,7 +153,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: any) => {
               <View
                 style={[styles.iconWrapper, isFocused && styles.iconHidden]}
               >
-                <Icon active={isFocused} color={color} />
+                <Icon active={isFocused} color={color} focused={isFocused} size={24} />
               </View>
             </Pressable>
           );
@@ -239,7 +177,12 @@ export function BottomTabsNavigator() {
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: (props: TabIconProps) => <HomeIcon {...props} />,
+          tabBarIcon: (props: any) =>
+            props.focused ? (
+              <Svgs.PrimaryHome width={24} height={24} />
+            ) : (
+              <Svgs.WhiteHome width={24} height={24} />
+            ),
         }}
       />
       <Tab.Screen
@@ -247,7 +190,12 @@ export function BottomTabsNavigator() {
         component={ServicesScreen}
         options={{
           tabBarLabel: 'Services',
-          tabBarIcon: (props: TabIconProps) => <CarIcon {...props} />,
+          tabBarIcon: (props: any) =>
+            props.focused ? (
+              <Svgs.PrimaryCar width={24} height={24} />
+            ) : (
+              <Svgs.WhiteCar width={24} height={24} />
+            ),
         }}
       />
       <Tab.Screen
@@ -255,7 +203,12 @@ export function BottomTabsNavigator() {
         component={SubscriptionScreen}
         options={{
           tabBarLabel: 'Subscription',
-          tabBarIcon: (props: TabIconProps) => <SparkleIcon {...props} />,
+          tabBarIcon: (props: any) =>
+            props.focused ? (
+              <Svgs.StarsPrimary width={24} height={24} />
+            ) : (
+              <Svgs.StarssWhite width={24} height={24} />
+            ),
         }}
       />
       <Tab.Screen
@@ -263,7 +216,12 @@ export function BottomTabsNavigator() {
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: (props: TabIconProps) => <ProfileIcon {...props} />,
+          tabBarIcon: (props: any) =>
+            props.focused ? (
+              <Svgs.PrimaryProfile width={24} height={24} />
+            ) : (
+              <Svgs.WhiteProfile width={24} height={24} />
+            ),
         }}
       />
     </Tab.Navigator>

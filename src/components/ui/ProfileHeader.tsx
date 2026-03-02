@@ -1,15 +1,18 @@
 
 import { Image, ImageSourcePropType, Pressable, View } from 'react-native';
 
-import { Svgs } from '../../assets';
+import { images, Svgs } from '../../assets';
 import { colors, spacing, borderRadius, shadows } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
+import { metrics } from '../../utils';
 
 type Props = {
     onBack?: () => void;
     onHistory?: () => void;
     onNotification?: () => void;
+
     avatarSource?: ImageSourcePropType;
+    hideBackButton?: boolean;
 };
 
 export const ProfileHeader = ({
@@ -17,25 +20,28 @@ export const ProfileHeader = ({
     onHistory,
     onNotification,
     avatarSource,
+    hideBackButton=false
 }: Props) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            <Pressable style={styles.circleButton} onPress={onBack ? onBack : navigation.goBack}>
+            {hideBackButton ?<View style={{ width: spacing.xl2 }} /> : (
+            <Pressable style={styles.circleButton} onPress={onBack ? onBack : ()=>navigation.goBack()}>
                 <Svgs.BackIcon width={20} height={20} />
             </Pressable>
+            )}
 
             <View style={styles.actions}>
                 <Pressable style={styles.circleButton} onPress={onHistory}>
                     <Svgs.HistoryIcon width={28} height={28} />
                 </Pressable>
-                <Pressable style={styles.circleButton} onPress={onNotification}>
+                <Pressable style={styles.circleButton} onPress={onNotification?onNotification:()=>navigation.navigate('Notifications' as any)}>
                     <Svgs.NotificationIcon width={30} height={30} />
                 </Pressable>
                 {avatarSource ? (
                     <Image source={avatarSource} style={styles.avatar} />
                 ) : (
-                    <View style={[styles.avatar, styles.avatarPlaceholder]} />
+                   <Image source={images.TempProfile} style={styles.avatar} />
                 )}
             </View>
         </View>
@@ -48,6 +54,7 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: spacing.lg,
+        marginTop: metrics.width(5),
     },
     actions: {
         flexDirection: 'row',
@@ -58,7 +65,7 @@ const styles = {
         width: spacing.xl2,
         height: spacing.xl2,
         borderRadius: borderRadius.full,
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: '#C0CCCE',
         alignItems: 'center',
         justifyContent: 'center',

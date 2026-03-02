@@ -23,7 +23,7 @@ interface CheckboxProps {
 
 const SIZE_MAP: Record<CheckboxSize, { box: number; check: number }> = {
   sm: { box: 18, check: 10 },
-  md: { box: 20, check: 12 },
+  md: { box: 17, check: 12 },
 };
 
 export const Checkbox: React.FC<CheckboxProps> = ({
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   box: {
     borderWidth: 1,
-    borderColor: colors.border.medium,
+    borderColor: colors.border.secondary,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.white,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: typography.fontSize.sm,
-    color: colors.text.primary,
+    color: colors.text.secondary,
     fontFamily: typography.fontFamily.medium,
   },
 });

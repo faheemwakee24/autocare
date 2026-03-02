@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { Svgs } from '../../assets';
-import { colors, spacing, borderRadius, typography } from '../../constants';
+import { colors, spacing, borderRadius, typography, shadows } from '../../constants';
 import { metrics } from '../../utils';
 
 type CustomCheckboxProps = {
@@ -39,6 +39,7 @@ export const CustomCheckbox = ({
       hitSlop={8}
       disabled={disabled}
     >
+      {label ? <Text style={[styles.label, labelStyle]}>{label}</Text> : null}
       {checked ? (
         <Svgs.CheckCircle height={size} width={size} color={colors.primary} />
       ) : (
@@ -49,7 +50,7 @@ export const CustomCheckbox = ({
           ]}
         />
       )}
-      {label ? <Text style={[styles.label, labelStyle]}>{label}</Text> : null}
+
     </Pressable>
   );
 };
@@ -59,6 +60,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
+    ...shadows.md,
+    padding: spacing.md,
+    borderRadius: borderRadius.xxl,
+    backgroundColor: colors.white,
   },
   disabled: {
     opacity: 0.6,

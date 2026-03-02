@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 // Components
-import { Button, Input, Checkbox } from '../../components/ui';
+import { Button, Input, Checkbox, CustomStatusBar } from '../../components/ui';
 
 // Assets
 import { Svgs, images } from '../../assets';
@@ -30,8 +30,10 @@ import {
 } from '../../constants';
 import { metrics } from '../../utils';
 import GradientLine from '../../components/ui/GradientLine';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function LoginScreen() {
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -67,17 +69,20 @@ export default function LoginScreen() {
   };
 
   const handleGoogleSignIn = () => {
+    console.log('test')
     // TODO: Hook up Google sign-in
+    navigation.navigate('DriverBottomTabs',{screen:'Home'})
   };
 
   return (
     <View style={styles.safeArea}>
-      <StatusBar translucent backgroundColor="red" barStyle="light-content" />
+      <StatusBar  backgroundColor="red" barStyle="dark-content" />
       <ScrollView
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}
       >
-        <Image source={images.AuthMain} style={styles.heroImage} />
+        <CustomStatusBar />
+        <Image source={images.AuthMain} style={[styles.heroImage, { marginTop: insets.top }]} />
 
         <View style={styles.form}>
           <View style={styles.formGroup}>

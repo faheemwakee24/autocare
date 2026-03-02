@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    paddingVertical: spacing.md,
+    paddingVertical: spacing.sm,
     borderRadius: borderRadius.xxxl,
     borderWidth: 1,
     borderColor: colors.border.dark2,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: typography.fontFamily.medium,
-    fontSize: typography.fontSize.md,
+    fontSize: typography.fontSize.sm,
     color: colors.secondary,
   },
   textActive: {

@@ -5,6 +5,7 @@ import { CustomCheckbox } from '../../../components';
 import styles from '../styles';
 import { servicesDetails } from '../constants';
 import { Svgs } from '../../../assets';
+import { borderRadius, shadows } from '../../../constants';
 
 type Props = {
   selectedServices: string[];
@@ -22,7 +23,7 @@ const StepServices = ({
   return (
     <View style={styles.section}>
       <View style={styles.rowBetween}>
-        <View/>
+        <View />
         <TouchableOpacity style={styles.iconContainer} onPress={onNext}>
           <Svgs.ForwardIcon />
         </TouchableOpacity>
@@ -44,27 +45,34 @@ const StepServices = ({
             };
 
             return (
-              <Pressable
-                key={service.id}
-                style={[
-                  styles.serviceRow,
-                  styles.serviceRowList,
-                  isSelected && styles.serviceRowActive,
-                ]}
-                onPress={toggleService}
-              >
-                <Image source={service.image} style={styles.serviceThumb} />
-                <View style={styles.serviceDetails}>
-                  <Text style={styles.serviceName}>{service.title}</Text>
-                  <Text style={styles.serviceMeta}>{service.duration}</Text>
-                  <Text style={styles.servicePrice}>{service.price}</Text>
-                </View>
-                <CustomCheckbox
-                  checked={isSelected}
+              <View style={{
+                backgroundColor: 'white',
+                borderRadius: borderRadius.xxl,
+                ...shadows.md,
+              }}>
+                <Pressable
+                  key={service.id}
+                  style={[
+                    styles.serviceRow,
+                    styles.serviceRowList,
+                    isSelected && styles.serviceRowActive,
+                  ]}
                   onPress={toggleService}
-                  containerStyle={styles.inlineCheckbox}
-                />
-              </Pressable>
+                >
+
+                  <Image source={service.image} style={styles.serviceThumb} />
+                  <View style={styles.serviceDetails}>
+                    <Text style={styles.serviceName}>{service.title}</Text>
+                    <Text style={styles.serviceMeta}>{service.duration}</Text>
+                    <Text style={styles.servicePrice}>{service.price}</Text>
+                  </View>
+                  <CustomCheckbox
+                    checked={isSelected}
+                    onPress={toggleService}
+                    containerStyle={styles.inlineCheckbox}
+                  />
+                </Pressable>
+              </View>
             );
           })}
         </View>

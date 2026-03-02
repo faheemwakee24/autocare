@@ -1,24 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
 
 // Assets
-import { Logo } from '../../assets';
+import { images } from '../../assets';
 
 // Constants
 import { colors, spacing, typography } from '../../constants';
+import { metrics } from '../../utils';
 
 export default function SplashScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Logo width={80} height={80} />
-        <Text style={styles.title}>AutoCare</Text>
-        <ActivityIndicator
-          size="large"
-          color={colors.primary}
-          style={styles.loader}
-        />
-        <Text style={styles.loadingText}>Loading...</Text>
+        <Image source={images.AppIcon} style={styles.logo} />
       </View>
     </View>
   );
@@ -33,6 +27,10 @@ const styles = StyleSheet.create({
   },
   content: {
     alignItems: 'center',
+  },
+  logo: {
+    width: metrics.screenWidth * 0.5,
+    height: metrics.screenWidth * 0.5,
   },
   title: {
     fontSize: typography.fontSize.xxxl,

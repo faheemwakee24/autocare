@@ -53,15 +53,17 @@ const ChangePasswordScreen = () => {
                         label="New Password"
                         placeholder="Enter your new password"
                         value={newPassword}
+                        secured
                         onChangeText={setNewPassword}
-                        rightIcon={<Svgs.GrayEdit width={22} height={22} />}
+                        
                     />
                     <Input
                         label="Confirm Password"
                         placeholder="Enter your confirm password"
                         value={confirmPassword}
+                        secured
                         onChangeText={setConfirmPassword}
-                        rightIcon={<Svgs.GrayEdit width={22} height={22} />}
+                        
                     />
                 </View>
                 <View style={styles.buttonContainer}>

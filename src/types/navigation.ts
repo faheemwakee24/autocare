@@ -43,6 +43,12 @@ export type RootStackParamList = {
   Support: undefined;
   About: undefined;
   ChangePassword: undefined;
+  Track: undefined; 
+  BookingHistory: undefined;
+  Rating: undefined;
+  DriverBottomTabs: NavigatorScreenParams<TabParamList>;
+  DriverBookings: undefined;
+  DriverTrackScreen: undefined;
 };
 
 export type TabParamList = {
@@ -52,7 +58,10 @@ export type TabParamList = {
   Subscriptions: undefined;
 
 };
-
+export type DriverTabParamList = {
+  DriverHome: undefined;
+  DriverBookings: undefined;
+};
 export type NavigationProps<T extends keyof RootStackParamList> = {
   navigation: any;
   route: {

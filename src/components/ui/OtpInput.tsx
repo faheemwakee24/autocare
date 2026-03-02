@@ -80,20 +80,21 @@ export const OtpInput: React.FC<OtpInputProps> = ({
         const displayChar = secure ? '•' : value[i];
 
         return (
-          <Pressable
-            key={i}
-            style={[
-              styles.inputBox,
-              boxStyle,
-              isFilled ? styles.inputBoxFilled : styles.inputBoxEmpty,
-              isFilled ? filledBoxStyle : emptyBoxStyle,
-            ]}
-            onPress={() => inputRef.current?.focus()}
-          >
-            {isFilled && (
-              <Text style={[styles.pinText, textStyle]}>{displayChar}</Text>
-            )}
-          </Pressable>
+          <View key={i} style={styles.inputBoxShadowWrapper}>
+            <Pressable
+              style={[
+                styles.inputBox,
+                boxStyle,
+                isFilled ? styles.inputBoxFilled : styles.inputBoxEmpty,
+                isFilled ? filledBoxStyle : emptyBoxStyle,
+              ]}
+              onPress={() => inputRef.current?.focus()}
+            >
+              {isFilled && (
+                <Text style={[styles.pinText, textStyle]}>{displayChar}</Text>
+              )}
+            </Pressable>
+          </View>
         );
       })}
 
@@ -119,14 +120,25 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: spacing.md,
   },
-  inputBox: {
+  inputBoxShadowWrapper: {
     height: metrics.width(60),
     width: metrics.width(60),
     borderRadius: borderRadius.full,
     backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
-    ...shadows.sm,
+    ...shadows.md,
+  },
+  inputBox: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: borderRadius.full,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   inputBoxFilled: {
     borderWidth: 2,

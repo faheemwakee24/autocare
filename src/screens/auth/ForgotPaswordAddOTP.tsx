@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 // Components
-import { Button, Input, Checkbox, OtpInput } from '../../components/ui';
+import { Button, Input, Checkbox, OtpInput, CustomStatusBar } from '../../components/ui';
 
 // Assets
 import { Svgs, images } from '../../assets';
@@ -30,11 +30,12 @@ import {
 } from '../../constants';
 import { metrics } from '../../utils';
 import GradientLine from '../../components/ui/GradientLine';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export default function ForgotPaswordAddOTPScreen() {
   const navigation = useNavigation();
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const insets = useSafeAreaInsets();
   const handleAddOTP = async () => {
     if (!code) {
       Alert.alert('Error', 'Please fill in all fields');
@@ -57,12 +58,12 @@ export default function ForgotPaswordAddOTPScreen() {
 
   return (
     <View style={styles.safeArea}>
-      <StatusBar translucent backgroundColor="red" barStyle="light-content" />
       <ScrollView
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}
       >
-        <Image source={images.AuthMain} style={styles.heroImage} />
+        <CustomStatusBar />
+        <Image source={images.AuthMain} style={[styles.heroImage, { marginTop: insets.top }]} />
 
         <View style={styles.form}>
           <View style={styles.formGroup}>

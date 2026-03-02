@@ -23,8 +23,10 @@ import {
 } from './constants';
 import styles from './styles';
 import { Button, ProfileHeader } from '../../components';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ServicesScreen() {
+    const navigation = useNavigation();
     const insets = useSafeAreaInsets();
     const [activeStep, setActiveStep] = useState(0);
     const [selectedSlot, setSelectedSlot] = useState(timeSlots[0]);
@@ -154,6 +156,7 @@ export default function ServicesScreen() {
         <View style={[styles.container,{paddingTop:insets.top}]}>
             <ProfileHeader
                 onBack={goBack}
+                onHistory={()=>{navigation.navigate('BookingHistory')}}
             />
             <View style={styles.topButtonContainer}>
                 <Button

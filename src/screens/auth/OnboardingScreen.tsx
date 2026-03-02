@@ -68,7 +68,7 @@ export default function OnboardingScreen() {
     if (nextIndex < slides.length) {
       listRef.current?.scrollToIndex({ index: nextIndex });
     } else {
-      navigation.navigate('Welcome');
+      navigation.navigate('Signup');
     }
   };
   const onViewableItemsChanged = useRef(
@@ -84,7 +84,7 @@ export default function OnboardingScreen() {
   const renderItem = ({ item }: { item: OnboardingStep }) => (
     <View style={[styles.slide, { width }]}>
       <View style={styles.illustrationWrapper}>
-        <Image source={item.image} style={styles.image} resizeMode="contain" />
+        <Image source={item.image} style={styles.image} resizeMode="cover" />
       </View>
       <View style={styles.textBlock}>
         <Text style={styles.title}>{item.title}</Text>
@@ -96,8 +96,7 @@ export default function OnboardingScreen() {
   return (
     <View style={styles.container}>
       <StatusBar
-          
-        backgroundColor="#fef344"
+        
         barStyle="dark-content"
       />
       <FlatList
@@ -131,7 +130,7 @@ export default function OnboardingScreen() {
         </View>
 
         <Button
-          title={activeIndex === slides.length - 1 ? 'Get Started' : 'Next'}
+          title={activeIndex === slides.length - 1 ? 'Get Started' : 'Continue'}
           onPress={handleNext}
           size="lg"
           style={styles.primaryButton}
@@ -159,15 +158,18 @@ const styles = StyleSheet.create({
   slide: {
     flex: 1,
     justifyContent: 'space-between',
+  
   },
   illustrationWrapper: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   image: {
     width: '100%',
     height: '100%',
+  
   },
   textBlock: {
     paddingBottom: spacing.xl,
@@ -206,7 +208,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   dotInactive: {
-    backgroundColor: colors.gray[300],
+    backgroundColor: '#555555',
   },
   dotActive: {
     backgroundColor: colors.primary,

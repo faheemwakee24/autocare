@@ -5,6 +5,8 @@ import { Svgs } from '../../../assets';
 import GradientLine from '../../../components/ui/GradientLine';
 import styles from '../styles';
 import SummaryRow from './SummaryRow';
+import { Button } from '../../../components';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   selectedServicesLabel: string;
@@ -21,7 +23,8 @@ const StepConfirm = ({
   selectedArea,
   address,
 }: Props) => {
-  return (
+  const navigation = useNavigation();
+    return (
     <View style={styles.section}>
       <View style={styles.confirmBadge}>
         <Svgs.SucessTick />
@@ -40,9 +43,7 @@ const StepConfirm = ({
         />
         <SummaryRow label="Total" value="AED 70" highlight />
       </View>
-      <Pressable style={styles.primaryButton}>
-        <Text style={styles.primaryButtonText}>Track</Text>
-      </Pressable>
+      <Button title="Track" onPress={() => navigation.navigate('Track' as never)} />
     </View>
   );
 };

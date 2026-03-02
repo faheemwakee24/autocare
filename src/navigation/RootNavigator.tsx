@@ -25,6 +25,11 @@ import ForgotPaswordAddOTPScreen from '../screens/auth/ForgotPaswordAddOTP';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import ChangePasswordScreen from '../screens/ChangePasswordScreen';
 import NotificationsScreen from '../screens/NotificationsScreen';
+import TrackScreen from '../screens/TrackScreen';
+import BookingHistoryScreen from '../screens/BookingHistoryScreen';
+import { DriverBottomTabsNavigator } from './DriverBottomTabs';
+import RatingScreen from '../screens/RatingScreen';
+import DriverTrackScreen from '../screens/DriverTrackScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -62,7 +67,7 @@ export default function RootNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={'MainTabs' }
+        initialRouteName={'Onboarding' }
         screenOptions={{
           headerShown: false,
           animation: 'default',
@@ -106,6 +111,18 @@ export default function RootNavigator() {
           component={NotificationsScreen}
         />
         <Stack.Screen
+          name="Track"
+          component={TrackScreen}
+        />
+        <Stack.Screen
+          name="BookingHistory"
+          component={BookingHistoryScreen}
+        />
+        <Stack.Screen
+          name="Rating"
+          component={RatingScreen}
+        />
+        <Stack.Screen
           name="Onboarding"
           component={OnboardingScreen}
         />
@@ -114,6 +131,14 @@ export default function RootNavigator() {
         <Stack.Screen
           name="MainTabs"
           component={BottomTabsNavigator}
+        />
+        <Stack.Screen
+          name="DriverBottomTabs"
+          component={DriverBottomTabsNavigator}
+        />
+        <Stack.Screen
+          name="DriverTrackScreen"
+          component={DriverTrackScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

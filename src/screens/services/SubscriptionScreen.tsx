@@ -110,13 +110,14 @@ const SubscriptionScreen = () => {
     };
     return (
         <View style={[styles.safeArea, { paddingTop: insets.top }]}>
+                      <ProfileHeader onBack={handleBack} onHistory={() => { }} />
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={[
                     styles.content,
                 ]}
             >
-                <ProfileHeader onBack={handleBack} onHistory={() => { }} />
+      
                 <View style={styles.heading}>
                     <Text style={styles.title}>Subscription Plans</Text>
                     <Text style={styles.subtitle}>
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.appBackground,
     },
     content: {
-        paddingHorizontal: spacing.lg,
+        
         paddingTop: spacing.lg,
         gap: spacing.mdl2,
     },
@@ -221,6 +222,7 @@ const styles = StyleSheet.create({
     planList: {
         paddingVertical: spacing.sm,
         gap: spacing.md,
+        paddingHorizontal:spacing.lg
     },
     planCard: {
         width: metrics.screenWidth * 0.8,
@@ -230,8 +232,9 @@ const styles = StyleSheet.create({
         borderColor: colors.border.medium,
         padding: spacing.mdl2,
         marginRight: spacing.md,
-        overflow: 'hidden',
-        ...shadows.lg,
+        
+        ...shadows.md,
+        
     },
     planCardActive: {
         borderColor: colors.primaryColors.primary32,

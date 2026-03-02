@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ViewStyle,
   TextInputProps,
+  Pressable,
 } from 'react-native';
 import {
   colors,
@@ -14,6 +15,9 @@ import {
   typography,
   shadows,
 } from '../../constants';
+import { Svgs } from '../../assets/icons';
+
+const EYE_ICON_SIZE = 22;
 
 interface InputProps extends Omit<TextInputProps, 'style'> {
   label?: string;
@@ -22,6 +26,7 @@ interface InputProps extends Omit<TextInputProps, 'style'> {
   containerStyle?: ViewStyle;
   variant?: 'default' | 'pill';
   size?: 'md' | 'lg';
+  secured?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
@@ -33,10 +38,16 @@ export const Input: React.FC<InputProps> = ({
   containerStyle,
   variant = 'default',
   size = 'md',
+  secured = false,
   leftIcon,
   rightIcon,
+  secureTextEntry,
   ...textInputProps
 }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const isSecure = secured ? !passwordVisible : secureTextEntry;
+  const showRightIcon = secured || rightIcon;
+
   const labelStyles = [styles.label, variant === 'pill' && styles.labelPill];
 
   const inputStyles = [
@@ -47,20 +58,37 @@ export const Input: React.FC<InputProps> = ({
     style,
   ];
 
+  const rightIconContent = secured ? (
+    <Pressable
+      onPress={() => setPasswordVisible((v) => !v)}
+      style={styles.eyeButton}
+      hitSlop={8}
+    >
+      {passwordVisible ? (
+        <Svgs.EyeON width={EYE_ICON_SIZE} height={EYE_ICON_SIZE} />
+      ) : (
+        <Svgs.EyeOFF width={EYE_ICON_SIZE} height={EYE_ICON_SIZE} />
+      )}
+    </Pressable>
+  ) : (
+    rightIcon
+  );
+
   return (
     <View style={[styles.container, containerStyle]}>
       {label && <Text style={labelStyles}>{label}</Text>}
-      <View style={styles.inputWrapper}>
+      <View style={[styles.inputWrapper, variant === 'pill' && styles.inputWrapperShadow]}>
         {leftIcon && <View style={styles.iconLeft}>{leftIcon}</View>}
         <TextInput
           style={[
             ...inputStyles,
-            (leftIcon || rightIcon) && styles.inputWithIcons,
+            (leftIcon || showRightIcon) && styles.inputWithIcons,
           ]}
           placeholderTextColor={colors.text.tertiary}
+          secureTextEntry={isSecure}
           {...textInputProps}
         />
-        {rightIcon && <View style={styles.iconRight}>{rightIcon}</View>}
+        {showRightIcon && <View style={styles.iconRight}>{rightIconContent}</View>}
       </View>
       {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
@@ -84,6 +112,13 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
+    borderRadius: borderRadius.xxl2,
+    backgroundColor: colors.white,
+    ...shadows.md,
+  },
+  inputWrapperShadow: {
+    ...shadows.lg,
+    borderRadius: borderRadius.full,
   },
   inputBase: {
     flex: 1,
@@ -92,20 +127,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.mdl4,
     paddingVertical: spacing.mdl2,
     borderRadius: borderRadius.xxl2,
-
+    backgroundColor: colors.white,
     fontSize: typography.fontSize.md,
     color: colors.text.primary,
     minHeight: 48,
     fontFamily: typography.fontFamily.regular,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
-
-    elevation: 24,
   },
   inputWithIcons: {
     paddingHorizontal: spacing.xl,
@@ -120,7 +146,6 @@ const styles = StyleSheet.create({
     minHeight: 70,
     fontSize: typography.fontSize.xl,
     color: colors.text.secondary,
-    ...shadows.lg,
   },
   inputLg: {
     fontSize: typography.fontSize.xxl,
@@ -136,6 +161,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: spacing.lg,
     zIndex: 1,
+  },
+  eyeButton: {
+    padding: spacing.xs,
   },
   inputError: {
     borderColor: colors.error,

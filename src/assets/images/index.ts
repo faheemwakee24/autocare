@@ -13,8 +13,14 @@ export const images = {
   CarWashImage: require('./CarWashImage.png'),
   CeramicPaintImage: require('./CeramicPaintImage.png'),
   CarImage: require('./CarImage.png'),
-  RocketIcon:require('./RocketIcon.png'),
-  SilverIcon:require('./SilverIcon.png'),
-  CrownIcon:require('./CrownIcon.png'),
-  DaimondIcon:require('./DaimondIcon.png')
+  RocketIcon: require('./RocketIcon.png'),
+  SilverIcon: require('./SilverIcon.png'),
+  CrownIcon: require('./CrownIcon.png'),
+  DaimondIcon: require('./DaimondIcon.png'),
+  Upcoming: require('./Upcoming.png'),
+  TotalServices: require('./TotalServices.png'),
+  Gold: require('./Gold.png'),
+  DriverDashboardMain: require('./DriverDashboardMain.png'),
+  TempProfile: require('./TempProfile.png'),
+  AppIcon: require('./AppIcon.png'),
 } as const;

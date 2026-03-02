@@ -68,7 +68,7 @@ const notifications: NotificationSection[] = [
 const NotificationsScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileHeader onBack={() => {}} />
+      <ProfileHeader  />
 
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderWidth: 1,
     borderColor: colors.border.medium,
-    ...shadows.sm,
+    ...shadows.md,
     gap: spacing.md,
   },
   avatar: {
